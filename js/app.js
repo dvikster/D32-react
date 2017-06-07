@@ -37,15 +37,14 @@ var LibraryItem = React.createClass({
             visible: false,
         };
     },
-    readmoreClick:function (e) {
+    readmoreClick: function (e) {
         e.preventDefault();
         this.setState({visible:true});
     },
-    hideClick:function (e) {
+    hideClick: function (e) {
         e.preventDefault();
         this.setState({visible:false});
     },
-
     render: function(){
         var autor = this.props.dataElement.autor,
             name = this.props.dataElement.name,
@@ -76,21 +75,20 @@ var LibraryItem = React.createClass({
     }
 });
 
-
-
-
 var LibraryContent = React.createClass({
     propTypes: {
         arrayBook: React.PropTypes.array.isRequired
     },
     getInitialState: function () {
         return{
-            counterClick: 0
+            counterClick: 0,
+            key: 0
         };
     },
-    counterClick:function () {
-        this.setState({counterClick: ++this.state.counterClick });
-        console.log(this.state.counterClick);
+    counterClick: function () {
+        this.setState({key: this.state.counterClick++ });
+        console.log('counterClick - '+this.state.counterClick);
+        console.log('key - '+this.state.key);
     },
     render: function() {
         var dataArray = this.props.arrayBook;
