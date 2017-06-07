@@ -1,0 +1,24 @@
+.library-wrapp{
+    max-width:1000px;
+    margin:0 auto;
+    width: 100%;
+}
+.book{
+    width: 30%;
+    margin: 1.5%;
+    display: inline-block;
+    vertical-align: top;
+}
+.book img{
+    width:100%;
+    vertical-align: top;
+}
+.bookmas{
+    font-size: 20px;
+    color: green;
+    font-weight: bold;
+    margin: 1.5%;
+}
+.booknone{
+     display: none;
+}
