@@ -18,7 +18,17 @@
     color: green;
     font-weight: bold;
     margin: 1.5%;
+    cursor: pointer;
 }
 .booknone{
      display: none;
+}
+.none{
+    display: none;
+}
+.readmore, news__big-text{
+    display: block;
+}
+.readmore.none, news__big-text.none{
+    display: none;
 }

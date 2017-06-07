@@ -21,38 +21,32 @@ var library = [
         "pages":"425"
     }
 ];
-// var counterClick=0;
+
 var LibraryItem = React.createClass({
     propTypes:{
-       dataElement: React.PropTypes.shape({
-           autor: React.PropTypes.string.isRequired,
-           img: React.PropTypes.string.isRequired,
-           name: React.PropTypes.string.isRequired,
-           description: React.PropTypes.string.isRequired,
-           pages: React.PropTypes.string.isRequired
-       })
+        data: React.PropTypes.shape({
+            autor: React.PropTypes.string.isRequired,
+            img: React.PropTypes.string.isRequired,
+            name: React.PropTypes.string.isRequired,
+            description: React.PropTypes.string.isRequired,
+            pages: React.PropTypes.string.isRequired
+        })
     },
     getInitialState: function () {
         return{
-            visible: false,
+            visible: false
         };
     },
     readmoreClick:function (e) {
         e.preventDefault();
         this.setState({visible:true});
     },
-    hideClick:function (e) {
-        e.preventDefault();
-        this.setState({visible:false});
-    },
-
     render: function(){
-        var autor = this.props.dataElement.autor,
-            name = this.props.dataElement.name,
-            img = this.props.dataElement.img,
-            description = this.props.dataElement.description,
-            pages = this.props.dataElement.pages,
-            visible = this.state.visible;
+        var autor = this.props.data.autor,
+            name = this.props.data.name,
+            img = this.props.data.img,
+            description = this.props.data.description,
+            pages = this.props.data.pages;
 
         return (
             <div>
@@ -61,15 +55,8 @@ var LibraryItem = React.createClass({
                 <p className="autor"><strong>Autor: </strong>{autor}</p>
                 <a href="#"
                    onClick={this.readmoreClick}
-                   className={'readmore ' + (visible ? 'none': '')}>
-                   Learn more
-                </a>
-                <p className={'desc ' + (visible ? '': 'none')}><strong>Description: </strong>{description}</p>
-                <a href="#"
-                   onClick={this.hideClick}
-                   className={'readmore ' + (visible ? '': 'none')}>
-                    Hide
-                </a>
+                >Learn more</a>
+                <p className="desc"><strong>Description: </strong>{description}</p>
                 <p className="pages"><strong>Pages: </strong>{pages}</p>
             </div>
         )
@@ -81,29 +68,20 @@ var LibraryItem = React.createClass({
 
 var LibraryContent = React.createClass({
     propTypes: {
-        arrayBook: React.PropTypes.array.isRequired
-    },
-    getInitialState: function () {
-        return{
-            counterClick: 0
-        };
-    },
-    counterClick:function () {
-        this.setState({counterClick: ++this.state.counterClick });
-        console.log(this.state.counterClick);
+        data: React.PropTypes.array.isRequired
     },
     render: function() {
-        var dataArray = this.props.arrayBook;
+        var data = this.props.data;
         var libraryTemplate;
 
-        if (dataArray.length > 0) {
-            libraryTemplate = dataArray.map(function (item, index) {
-                        return (
-                            <div className="book" key={index}>
-                                <LibraryItem dataElement={item}/>
-                            </div>
-                        )
-                    })
+        if (data.length > 0) {
+            libraryTemplate = data.map(function (item, index) {
+                return (
+                    <div className="book" key={index}>
+                        <LibraryItem data={item}/>
+                    </div>
+                )
+            })
         }
         else {
             libraryTemplate = <p className="bookmas">There are no books in the library</p>
@@ -111,7 +89,7 @@ var LibraryContent = React.createClass({
         return (
             <div className="library-wrapp">
                 {libraryTemplate}
-                <div onClick={this.counterClick} className={dataArray.length > 0 ? 'bookmas' : 'booknone'}>Books in library: {dataArray.length}</div>
+                <div className={data.length > 0 ? 'bookmas' : 'booknone'}>Books in library: {data.length}</div>
             </div>
         );
     }
@@ -121,7 +99,7 @@ var App = React.createClass({
     render: function() {
         return (
             <div>
-                <LibraryContent arrayBook={library} />
+                <LibraryContent data={library} />
             </div>
         );
     }
