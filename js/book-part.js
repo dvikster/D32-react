@@ -25,7 +25,7 @@ var library = [
 var MainMenu = React.createClass({
     render: function(){
         return(
-            <ul>
+            <ul className="nav nav-pills nav-stacked">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Books</a></li>
                 <li><a href="#">Contact</a></li>
@@ -33,7 +33,7 @@ var MainMenu = React.createClass({
         )
     }
 });
-
+var bookSearchValue='';
 var SearchBook = React.createClass({
     // getInitialState: function () {
     //     return{
@@ -46,27 +46,52 @@ var SearchBook = React.createClass({
     onSearchBtnClick: function() {
         // alert(this.state.searchValue);
         // console.log(this.refs);
-        var bookSearchValue =ReactDOM.findDOMNode(this.refs.searchInput).value;
+        bookSearchValue =ReactDOM.findDOMNode(this.refs.searchInput).value;
         alert(bookSearchValue);
         console.log(bookSearchValue);
+
+
+
+
     },
 
     render: function() {
         return (
             <div>
-                <input
-                    className='search-book'
-                    // value={this.state.searchValue}
-                    // onChange={this.onInputBook}
-                    defaultValue=''
-                    placeholder='Get a book'
-                    ref='searchInput'
-                />
-                <button onClick={this.onSearchBtnClick}>Search</button>
+                <form className="form-inline">
+                    <div className="form-group">
+                        <input
+                        className='form-control'
+                        // value={this.state.searchValue}
+                        // onChange={this.onInputBook}
+                        defaultValue=''
+                        placeholder='Get a book'
+                        ref='searchInput'
+                        />
+                        <button  type="submit" className="btn btn-default" onClick={this.onSearchBtnClick}>Search</button>
+                    </div>
+                </form>
             </div>
         );
+
     }
 });
+
+{/*<div>*/}
+    {/*<form className="form-inline">*/}
+        {/*<div className="form-group">*/}
+            {/*<input*/}
+                {/*className='form-control'*/}
+                {/*// value={this.state.searchValue}*/}
+                {/*// onChange={this.onInputBook}*/}
+                {/*defaultValue=''*/}
+                {/*placeholder='Get a book'*/}
+                {/*ref='searchInput'*/}
+            {/*/>*/}
+            {/*<button  type="submit" className="btn btn-default" onClick={this.onSearchBtnClick}>Search</button>*/}
+        {/*</div>*/}
+    {/*</form>*/}
+{/*</div>*/}
 
 var LibraryItem = React.createClass({
     propTypes:{
@@ -165,13 +190,15 @@ var LibraryContent = React.createClass({
 var App = React.createClass({
     render: function() {
         return (
-            <div>
-                <div className="sidebar">
-                    <MainMenu />
-                </div>
-                <div className="main-content">
-                    <SearchBook />
-                    <LibraryContent arrayBook={library}/>
+            <div className="container">
+                <div className="row">
+                    <div className="sidebar col-md-2">
+                        <MainMenu />
+                    </div>
+                    <div className="main-content col-md-10">
+                        <SearchBook />
+                        <LibraryContent arrayBook={library}/>
+                    </div>
                 </div>
             </div>
         );

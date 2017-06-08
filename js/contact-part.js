@@ -2,7 +2,7 @@
 var MainMenu = React.createClass({
     render: function(){
         return(
-            <ul>
+            <ul className="nav nav-pills nav-stacked">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Books</a></li>
                 <li><a href="#">Contact</a></li>
@@ -26,12 +26,14 @@ var MainContentContact = React.createClass({
 var App = React.createClass({
     render: function() {
         return (
-            <div>
-                <div className="sidebar">
-                    <MainMenu />
-                </div>
-                <div className="main-content">
-                    <MainContentContact />
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-2">
+                        <MainMenu />
+                    </div>
+                    <div className="main-content col-md-10">
+                        <MainContentContact />
+                    </div>
                 </div>
             </div>
         );

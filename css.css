@@ -1,3 +1,6 @@
+body{
+    background-image: url("media/bg.jpg");
+}
 .library-wrapp{
     max-width:1000px;
     margin:0 auto;
